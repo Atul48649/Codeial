@@ -2,6 +2,16 @@ const express = require('express');
 const { path } = require('express/lib/application');
 const app = express();
 const port = 8000;
+const expressLayouts = require('express-ejs-layouts');
+
+// use static files
+app.use(express.static('./assets'));
+
+// use ejs layouts
+app.use(expressLayouts);
+// extract styles and scripts from sub pages into the layout
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
 
 // use express router
 app.use('/', require('./routes/index')); // here we can also write as '(./routes)' as it directly fetches index.js
