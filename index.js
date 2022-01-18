@@ -1,9 +1,14 @@
 const express = require('express');
+const { path } = require('express/lib/application');
 const app = express();
 const port = 8000;
 
 // use express router
-app.use('/', require('./routes')); // here we can also write as '(./routes/index.js)' but it directly fetches index.js
+app.use('/', require('./routes/index')); // here we can also write as '(./routes)' as it directly fetches index.js
+
+// set up the view engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 app.listen(port, function(err){
     if(err){
