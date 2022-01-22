@@ -7,13 +7,12 @@
                 </a>
             </p>
         </div>
-        <div id="auth-links">
+
+        <div class="auth-links">
             <ul>
                 <% if(locals.user) { %>
                     <li>
-                        <a href="/users/Profile">
-                            <%= user.name %>
-                        </a>
+                        <a href="/users/profile"><%= user.name %></a>
                     </li>
                     <li>
                         <a href="/users/sign-out">Sign Out</a>
