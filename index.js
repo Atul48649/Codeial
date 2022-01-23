@@ -70,6 +70,8 @@ app.use(passport.setAuthenticationUser);
 app.use(flash());
 app.use(flashMiddleware.setFlash);
 
+
+
 // use express router
 app.use('/', require('./routes/index')); // here we can also write as '(./routes)' as it directly fetches index.js
 
