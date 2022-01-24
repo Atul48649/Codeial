@@ -12,6 +12,15 @@ module.exports.create = async function (req, res) {
                 user: req.user._id
             });
 
+            if(req.xhr){
+                return res.status(200).json({
+                    data: {
+                        comment: comment
+                    },
+                    message: 'Comment published!'
+                });
+            }
+
             post.comments.push(comment);
             post.save();
             req.flash('success', 'Comment published!')
