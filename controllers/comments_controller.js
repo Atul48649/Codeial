@@ -3,6 +3,7 @@ const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
 const queue = require('../config/kue');
 const commentEmailWorker = require('../workers/comment_email_worker');
+const Like = require('../models/like');
 
 module.exports.create = async function (req, res) {
     try {
@@ -29,7 +30,7 @@ module.exports.create = async function (req, res) {
             });
 
             if(req.xhr){
-                return res.status(200).json({
+                return res.json(200, {
                     data: {
                         comment: comment
                     },
@@ -53,6 +54,15 @@ module.exports.destroy = async function (req, res) {
             let postId = comment.post;
             comment.remove();
             let post = await Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } });
+            await Like.deleteMany({likeable: comment._id, onModel: 'Comment'});
+            if (req.xhr){
+                return res.json(200, {
+                    data: {
+                        comment_id: req.params.id
+                    },
+                    message: "Post deleted"
+                });
+            }
             req.flash('success', 'Comment deleted!');
             return res.redirect('back');
         } else {
@@ -61,6 +71,6 @@ module.exports.destroy = async function (req, res) {
         }
     } catch (err) {
         req.flash('error', err);
-        return res.redirect('back');
+        return ;
     }
 }

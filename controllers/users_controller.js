@@ -37,19 +37,6 @@ module.exports.update = async function(req, res){
     }
 }
 
-// module.exports.update = function(req, res){
-//     if(req.user.id == req.params.id){
-//         User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-//             if(err){console.log('Error in finding/updating user : ', err); return;}
-//             req.flash('success', 'Updated!');
-//             return res.redirect('back');
-//         })
-//     }else{
-//         req.flash('error', 'Unauthorized!');
-//         return res.status(401).send('Unauthorized');
-//     }
-// }
-
 // render the sign up page 
 module.exports.signUp = function(req, res){
     if(req.isAuthenticated()){
