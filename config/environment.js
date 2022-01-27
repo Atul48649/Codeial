@@ -13,8 +13,8 @@ const development = {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'rajatul762@gmail.com',
-            pass: 'xyz'
+            user: 'rajatul762@gmail.com',// Replace this with your email
+            pass: 'Add your password here'
         }
     },
     google_client_id: '158673816773-j87kck3erjm8di3rqa2mo6t1gmun3vf9.apps.googleusercontent.com',

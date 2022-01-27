@@ -4,7 +4,7 @@ exports.newComment = (comment) => {
     let htmlString = nodeMailer.renderTemplate({comment: comment}, '/comments/new_comment.ejs');
 
     nodeMailer.transporter.sendMail({
-        from: 'rajatul762@gmail.com',
+        from: 'rajatul762@gmail.com',// Replace this with your email
         to: comment.user.email,
         subject: 'New Comment Published!',
         html: htmlString
